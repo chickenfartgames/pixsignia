@@ -9,9 +9,13 @@ public class UnitSelectorScript : MonoBehaviour
     public GameObject unitInfo;
     public GameObject AttackMenu;
     public GameObject InventoryMenu;
+    public GameObject TurnBox;
+    public bool uiActive;
     // Start is called before the first frame update
     void Start()
     {
+        uiActive = false;
+        TurnBox.SetActive(false);
         unitInfo.SetActive(false);
         AttackMenu.SetActive(false);
         InventoryMenu.SetActive(false);
@@ -41,12 +45,14 @@ public class UnitSelectorScript : MonoBehaviour
                     hit.collider.gameObject.GetComponent<PlayerMovementTest>().unitWasClicked();
                     GameObject.FindGameObjectWithTag("Map").GetComponent<GridScript>().TurnOffGrid();
                     unitInfo.SetActive(true);
+                    uiActive = true;
                 
                     
                 }else if(hit.collider.tag == "ActiveUnit"){
                     if(unitInfo.activeSelf == false){
                         GameObject.FindGameObjectWithTag("Map").GetComponent<GridScript>().TurnOffGrid();
                         unitInfo.SetActive(true);
+                        uiActive = true;
                     }
                 }else if(hit.collider.tag == "EnemyUnit"){
                     GameObject.FindGameObjectWithTag("Map").GetComponent<GridScript>().selectedEnemyUnit = hit.collider.gameObject;
@@ -58,9 +64,24 @@ public class UnitSelectorScript : MonoBehaviour
                         }
                         AttackMenu.GetComponent<AttackBoxScript>().enemyUnit = hit.collider.gameObject;
                         AttackMenu.SetActive(true);
-                    }
+                        uiActive = true;
+                    } 
+                }else{
+                    //if you do hit something, but I don't care about it, display the endturn button
+                    if(uiActive == true){
 
+                    }else{
+                        TurnBox.SetActive(true); 
+                    }
+                }            
+            }else{
+                //if you don't hit anything, display the endturn button
+                if(uiActive == true){
+
+                }else{
+                   TurnBox.SetActive(true); 
                 }
+                
             }
         }
     }

@@ -106,7 +106,8 @@ public class GridScript : MonoBehaviour
                 SelectedUnit.transform.position = new Vector3(x,0.2f,z);
                 SelectedUnit.GetComponent<PlayerMovementTest>().unitMoved = true;
                 SelectedUnit.GetComponent<PlayerMovementTest>().GetCurrentTile();
-                SelectedUnit.GetComponent<PlayerMovementTest>().wasNotClicked();
+                //comment this out just in case i need to put it back in
+                //SelectedUnit.GetComponent<PlayerMovementTest>().wasNotClicked();
             }
             
         }
@@ -351,6 +352,10 @@ public class GridScript : MonoBehaviour
         
         target.GetComponent<CharacterStats>().currHealth -= tempAttack;
         selectedEnemyUnit.GetComponent<EnemyMovementScript>().unitAttacked = true;
+    }
+
+    public void LerpUnitTo(Vector3 startPos, Vector3 endPos){
+        
     }
 
 }

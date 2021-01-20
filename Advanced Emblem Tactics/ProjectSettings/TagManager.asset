@@ -10,6 +10,7 @@ TagManager:
   - ActiveUnit
   - EnemyUnit
   - TurnManager
+  - Background
   layers:
   - Default
   - TransparentFX

@@ -32,8 +32,8 @@ public class ActiveMenuScript : MonoBehaviour
         if(activeUnit.GetComponent<PlayerMovementTest>().unitMoved != true){
             GameObject.FindGameObjectWithTag("Map").GetComponent<GridScript>().SelectedUnit = activeUnit;
             GameObject.FindGameObjectWithTag("Map").GetComponent<GridScript>().GenerateMovementRange(activeUnit.GetComponent<CharacterStats>().movementSpeed,
-            activeUnit.GetComponent<PlayerMovementTest>().currentTileX, activeUnit.GetComponent<PlayerMovementTest>().currentTileZ);
-            gameObject.SetActive(false);
+                activeUnit.GetComponent<PlayerMovementTest>().currentTileX, activeUnit.GetComponent<PlayerMovementTest>().currentTileZ);
+            //gameObject.SetActive(false);
         }
         
     }
@@ -42,8 +42,8 @@ public class ActiveMenuScript : MonoBehaviour
         if(activeUnit.GetComponent<PlayerMovementTest>().unitAttacked != true){
             GameObject.FindGameObjectWithTag("Map").GetComponent<GridScript>().SelectedUnit = activeUnit;
             GameObject.FindGameObjectWithTag("Map").GetComponent<GridScript>().GenerateAttackRange(activeUnit.GetComponent<PlayerMovementTest>().currentTileX,
-             activeUnit.GetComponent<PlayerMovementTest>().currentTileZ);
-            gameObject.SetActive(false);
+                activeUnit.GetComponent<PlayerMovementTest>().currentTileZ);
+            //gameObject.SetActive(false);
         }
         
     }
@@ -53,6 +53,7 @@ public class ActiveMenuScript : MonoBehaviour
             activeUnit.GetComponent<PlayerMovementTest>().wasNotClicked();
         }
         GameObject.FindGameObjectWithTag("Map").GetComponent<GridScript>().TurnOffGrid();
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<UnitSelectorScript>().uiActive = false;
         gameObject.SetActive(false);
     }
 
@@ -61,6 +62,7 @@ public class ActiveMenuScript : MonoBehaviour
             activeUnit.GetComponent<PlayerMovementTest>().wasNotClicked();
         }
         GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManagerScript>().NextTurn();
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<UnitSelectorScript>().uiActive = false;
         gameObject.SetActive(false);
     }
 
